@@ -13,8 +13,9 @@ require_once 'classes/Tag.php';
 $database = new Database();$db = $database->getConnection();$recipe_id = $_GET['id'];$message = '';
 
 // Fetch Dropdown Data
-$categories =$db->query("SELECT id, name FROM categories")->fetchAll();
-$existing_recipes =$db->query("SELECT id, title FROM recipes WHERE id != $recipe_id ORDER BY title ASC")->fetchAll();
+$stmt = $db->prepare("SELECT id, title FROM recipes WHERE id != :id ORDER BY title ASC");
+$stmt->execute([':id' => $recipe_id]);
+$existing_recipes = $stmt->fetchAll();
 
 // Fetch Existing Recipe
 $stmt =$db->prepare("SELECT * FROM recipes WHERE id = :id AND user_id = :user_id");
