@@ -25,15 +25,15 @@ class Comment {
     }
 
     public function readByRecipe($recipe_id) {
-        $query = "SELECT c.id, c.body, c.created_at, u.username, c.user_id 
-          FROM comments c 
-          JOIN users u ON c.user_id = u.id 
-          WHERE c.recipe_id = :recipe_id 
-          ORDER BY c.created_at DESC";
+        $query = "SELECT c.id, c.body, c.created_at, c.updated_at, u.username, c.user_id 
+                FROM comments c 
+                JOIN users u ON c.user_id = u.id 
+                WHERE c.recipe_id = :recipe_id 
+                ORDER BY c.created_at DESC";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':recipe_id', $recipe_id);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update() {
