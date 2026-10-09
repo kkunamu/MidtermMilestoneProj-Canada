@@ -1,11 +1,16 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & ROOT VARIABLES
+   ========================================================================== */
 :root {
-    --bg-main: #FAF6F0;          /* Sourdough flour / warm parchment */
-    --card-bg: #FFFFFF;          /* Pure white card background */
-    --text-main: #2B2523;        /* Warm roasted coffee / dark cocoa */
-    --text-muted: #6E655F;       /* Soft toasted brown */
+    --bg-main: #FAF6F0;          /* Warm sourdough / paper bag parchment */
+    --card-bg: #FFFFFF;          /* Fresh white panaderia box */
+    --text-main: #2B2523;        /* Warm roasted Kapeng Barako coffee */
+    --text-muted: #6E655F;       /* Soft toasted pandesal crumbs */
     --primary-maroon: #7A1C1C;   /* Deep crimson / warm mahogany */
     --primary-hover: #5A1212;
+    --ube-purple: #5C2751;        /* Ube halaya accent */
     --accent-gold: #C88D32;      /* Golden pandesal crust */
+    --banana-leaf: #386641;       /* Banana leaf green badge */
     --border-color: #E6DCCE;     /* Warm biscuit border */
     --tag-bg: #EFE6D8;          /* AO3-style soft beige tag pill */
     --tag-text: #4A3E37;
@@ -14,7 +19,7 @@
     --input-bg: #FFFEFC;
 }
 
-/* FIXED TYPO HERE: Changed '-' to '*' */
+/* Universal Reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -27,6 +32,7 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     padding: 20px 15px;
+    min-height: 100vh;
 }
 
 .container {
@@ -34,7 +40,9 @@ body {
     margin: 0 auto;
 }
 
-/* Page Titles */
+/* ==========================================================================
+   2. TYPOGRAPHY & HEADINGS
+   ========================================================================== */
 h1, h2, h3, h4 {
     font-family: Georgia, serif;
     color: var(--primary-maroon);
@@ -44,12 +52,73 @@ h1, h2, h3, h4 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px dashed var(--accent-gold);
 }
 
-/* Form Controls & Inputs */
+.filipino-badge {
+    background: var(--banana-leaf);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   ========================================================================== */
+header.site-header {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--primary-maroon);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.site-title {
+    font-family: Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--primary-maroon);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.nav-links a {
+    color: var(--primary-maroon);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   4. FORM CONTROLS & INPUTS
+   ========================================================================== */
 .form-group {
     margin-bottom: 18px;
+    width: 100%;
 }
 
 .form-group:last-child {
@@ -66,9 +135,11 @@ label {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 select,
 textarea {
     width: 100%;
+    max-width: 100%;
     padding: 10px 12px;
     border: 1.5px solid var(--border-color);
     border-radius: 6px;
@@ -94,84 +165,9 @@ textarea {
     min-height: 80px;
 }
 
-/* Header & Navigation */
-header.site-header {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-top: 4px solid var(--primary-maroon);
-    border-radius: 6px;
-    padding: 15px 20px;
-    margin-bottom: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-}
-
-.site-title {
-    font-family: Georgia, serif;
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: var(--primary-maroon);
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-}
-
-.nav-links a {
-    color: var(--primary-maroon);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
-
-/* Search Bar & Filters */
-.search-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 18px;
-    margin-bottom: 25px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-}
-
-.search-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-}
-
-.search-form input[type="text"] {
-    flex: 2 1 250px;
-    width: auto; /* Overrides global width: 100% so it doesn't collapse */
-    min-width: 0;
-}
-
-.search-form select {
-    flex: 1 1 180px;
-    width: auto; /* Overrides global width: 100% */
-    min-width: 0;
-}
-
-.search-form button,
-.search-form .btn {
-    flex: 0 0 auto;
-    white-space: nowrap;
-}
-
-/* Buttons */
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
 .btn, button {
     display: inline-flex;
     align-items: center;
@@ -189,6 +185,7 @@ header.site-header {
 .btn-primary, button[type="submit"] {
     background: var(--primary-maroon);
     color: #FFF;
+    box-shadow: 0 2px 4px rgba(122, 28, 28, 0.15);
 }
 
 .btn-primary:hover, button[type="submit"]:hover {
@@ -236,11 +233,68 @@ header.site-header {
     background-color: #FCA5A5;
 }
 
-/* AO3 Recipe Cards */
+.fav-btn {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.fav-btn.active {
+    background: #FFF0F0;
+    border-color: #E5A3A3;
+    color: var(--primary-maroon);
+}
+
+/* ==========================================================================
+   6. SEARCH BAR & FILTERS
+   ========================================================================== */
+.search-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-form input[type="text"] {
+    flex: 2 1 250px;
+    width: auto;
+    min-width: 0;
+}
+
+.search-form select {
+    flex: 1 1 180px;
+    width: auto;
+    min-width: 0;
+}
+
+.search-form button,
+.search-form .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   7. AO3 FEED & METADATA COMPONENTS
+   ========================================================================== */
 .recipe-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.02);
@@ -275,8 +329,8 @@ header.site-header {
 .metadata-block {
     background: #FDFBF7;
     border: 1px solid var(--border-color);
-    border-left: 4px solid var(--primary-maroon);
-    border-radius: 4px;
+    border-left: 5px solid var(--ube-purple);
+    border-radius: 6px;
     padding: 16px;
     margin-bottom: 25px;
 }
@@ -297,7 +351,7 @@ header.site-header {
     display: inline-block;
 }
 
-/* AO3 Tags */
+/* AO3 Tag Pills */
 .tag-container {
     display: flex;
     flex-wrap: wrap;
@@ -309,15 +363,15 @@ header.site-header {
     background: var(--tag-bg);
     color: var(--tag-text);
     padding: 3px 8px;
-    border-radius: 3px;
+    border-radius: 4px;
     font-size: 0.82rem;
     text-decoration: none;
     font-weight: 500;
 }
 
 .tag-pill:hover {
-    background: var(--border-color);
-    color: var(--primary-maroon);
+    background: var(--accent-gold);
+    color: #FFF;
 }
 
 /* Remix Banner */
@@ -336,7 +390,42 @@ header.site-header {
     font-weight: 600;
 }
 
-/* Ingredient & Step Sections */
+/* ==========================================================================
+   8. DETAILED RECIPE VIEW (AO3 WORK VIEW)
+   ========================================================================== */
+.recipe-main-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.recipe-hero-title {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    color: var(--primary-maroon);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.recipe-owner-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.summary-box {
+    background: #FAF6F0;
+    border-left: 4px solid var(--accent-gold);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
 .section-title {
     font-family: Georgia, serif;
     color: var(--primary-maroon);
@@ -345,8 +434,13 @@ header.site-header {
     margin: 25px 0 15px 0;
 }
 
-.ingredient-group {
-    margin-bottom: 15px;
+/* Ingredient Grid Cards */
+.ingredient-section-block {
+    background: #FFFEFC;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
 }
 
 .ingredient-group-header {
@@ -356,37 +450,91 @@ header.site-header {
     margin-bottom: 6px;
 }
 
-.ingredient-list {
-    list-style-type: square;
-    padding-left: 20px;
+.ingredient-badge-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
 }
 
-.ingredient-list li {
-    margin-bottom: 6px;
+.ingredient-badge-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.steps-list {
-    padding-left: 20px;
+.ingredient-badge-list li:last-child {
+    border-bottom: none;
 }
 
-.steps-list li {
-    margin-bottom: 14px;
-    padding-left: 5px;
+.qty-pill {
+    background: var(--tag-bg);
+    color: var(--primary-maroon);
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
 }
 
-/* Comments Styling */
+/* Instructions Step Cards */
+.step-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.step-card {
+    display: flex;
+    gap: 15px;
+    background: #FAF6F0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    align-items: flex-start;
+}
+
+.step-badge {
+    background: var(--primary-maroon);
+    color: #FFF;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.step-body {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   9. COMMENTS & FEEDBACK
+   ========================================================================== */
 .comments-section {
     margin-top: 40px;
     border-top: 2px solid var(--primary-maroon);
     padding-top: 25px;
 }
 
-.comment-card {
-    background: #FFF;
+.comment-form-card {
+    background: #FAF6F0;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 14px 18px;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.comment-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px 20px;
     margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .comment-header {
@@ -397,26 +545,9 @@ header.site-header {
     margin-bottom: 10px;
 }
 
-/* Favorite Button */
-.fav-btn {
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: all 0.15s ease;
-}
-
-.fav-btn.active {
-    background: #FFF0F0;
-    border-color: #E5A3A3;
-    color: var(--primary-maroon);
-}
-
-/* Form Layout Cards */
+/* ==========================================================================
+   10. FORMS & AUTHENTICATION CARDS
+   ========================================================================== */
 .form-section {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -476,7 +607,70 @@ header.site-header {
     flex: 1;
 }
 
-/* Responsive Mobile Layout Adjustments */
+/* Auth Pages (Login & Register) */
+.auth-container {
+    max-width: 440px;
+    margin: 40px auto;
+}
+
+.auth-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-top: 5px solid var(--primary-maroon);
+    border-radius: 12px;
+    padding: 30px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--primary-maroon);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.alert-message {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.alert-error {
+    background-color: #FDF2F2;
+    border: 1px solid #F8B4B4;
+    color: #9B1C1C;
+}
+
+.alert-success {
+    background-color: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #166534;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE MOBILE LAYOUT (< 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -485,6 +679,13 @@ header.site-header {
     header.site-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        border-top: 1px dashed var(--border-color);
+        padding-top: 10px;
     }
 
     .search-form {
@@ -508,126 +709,20 @@ header.site-header {
         width: 100% !important;
     }
 
-        /* Recipe View Polish */
-    .recipe-main-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        padding: 30px;
-        margin-bottom: 25px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    .auth-container {
+        margin: 15px auto;
+        padding: 0 5px;
+    }
+
+    .auth-card {
+        padding: 20px 16px;
     }
 
     .recipe-hero-title {
-        font-family: Georgia, serif;
-        font-size: 2.2rem;
-        color: var(--primary-maroon);
-        margin-bottom: 15px;
-        line-height: 1.2;
+        font-size: 1.75rem;
     }
 
-    .recipe-owner-actions {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
+    .recipe-main-card {
+        padding: 18px;
     }
-
-    .summary-box {
-        background: #FAF6F0;
-        border-left: 4px solid var(--accent-gold);
-        padding: 16px 20px;
-        border-radius: 0 8px 8px 0;
-        font-size: 1.05rem;
-        margin-bottom: 25px;
-        color: var(--text-main);
-    }
-
-    /* Styled Ingredient Grid Cards */
-    .ingredient-section-block {
-        background: #FFFEFC;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 18px 22px;
-        margin-bottom: 20px;
-    }
-
-    .ingredient-badge-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 10px;
-    }
-
-    .ingredient-badge-list li {
-        padding: 8px 0;
-        border-bottom: 1px dashed var(--border-color);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .ingredient-badge-list li:last-child {
-        border-bottom: none;
-    }
-
-    .qty-pill {
-        background: var(--tag-bg);
-        color: var(--primary-maroon);
-        font-weight: bold;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.9em;
-    }
-
-    /* Styled Instruction Steps */
-    .step-card-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 15px;
-    }
-
-    .step-card {
-        display: flex;
-        gap: 15px;
-        background: #FAF6F0;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 16px;
-        align-items: flex-start;
-    }
-
-    .step-badge {
-        background: var(--primary-maroon);
-        color: #FFF;
-        font-weight: bold;
-        font-size: 0.85rem;
-        padding: 4px 10px;
-        border-radius: 20px;
-        white-space: nowrap;
-    }
-
-    .step-body {
-        flex: 1;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    /* Comment Form & Feed Enhancements */
-    .comment-form-card {
-        background: #FAF6F0;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 25px;
-    }
-
-    .comment-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 16px 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    }
-
 }
